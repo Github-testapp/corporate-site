@@ -54,14 +54,19 @@ export default function Modal({
         <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
             onClick={handleBackdropClick}
-            aria-modal="true"
-            role="dialog"
-            aria-labelledby="modal-title"
-            tabIndex={-1}
+            onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                    onClose();
+                }
+            }}
+            role="presentation"
+            aria-hidden="true"
         >
-
             <div
                 ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
                 className={`bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full ${sizeClasses[size]} transform transition-all`}
             >
                 <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
